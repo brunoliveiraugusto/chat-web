@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { Message } from './interfaces/message';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 export class AppComponent {
 
   private hubConnection: HubConnection;
+  message: Message;
 
   constructor() {
     this.createConnection();
@@ -42,7 +44,7 @@ export class AppComponent {
   }
 
   private registerOnServerEvents() {
-    this.hubConnection.on("ReceiveMessage", (data: any, data1: any, data2: any) => {
+    this.hubConnection.on("ReceiveMessage", (data: Message) => {
       console.log(data);
     });
   }
