@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import * as signalR from '@aspnet/signalr';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,42 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+
+  private hubConnection: HubConnection;
+
+  constructor() {
+    this.createConnection();
+    this.registerOnServerEvents();
+    this.starConnection();
+  }
+
+  connectToStock(symbol: string) {
+    this.hubConnection.invoke("SendMessage", symbol);
+  }
+
+  private createConnection() {
+    this.hubConnection = new HubConnectionBuilder()
+      .withUrl('http://localhost:31146/chat', {
+        skipNegotiation: true,
+        transport: signalR.HttpTransportType.WebSockets
+      })
+      .build();
+  }
+
+  private starConnection() {
+    this.hubConnection
+      .start()
+      .then(() => {
+        console.log("Connection started");
+      })
+      .catch(() => {
+        console.log("Error while establishing a connection");
+      });
+  }
+
+  private registerOnServerEvents() {
+    this.hubConnection.on("ReceiveMessage", (data: any, data1: any, data2: any) => {
+      console.log(data);
+    });
+  }
 }
