@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MessageListModule } from './components/message-list/message-list.module';
+import { ChatModule } from './components/chat/chat.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { MessageListModule } from './components/message-list/message-list.module
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MessageListModule
+    ChatModule
   ],
   providers: [],
   bootstrap: [AppComponent]
