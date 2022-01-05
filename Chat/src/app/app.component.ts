@@ -14,9 +14,9 @@ export class AppComponent {
   message: Message;
 
   constructor() {
-    this.createConnection();
-    this.registerOnServerEvents();
-    this.starConnection();
+    // this.createConnection();
+    // this.registerOnServerEvents();
+    // this.starConnection();
   }
 
   connectToStock(symbol: string) {
