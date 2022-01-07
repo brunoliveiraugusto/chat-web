@@ -1,12 +1,13 @@
 import { NgModule } from "@angular/core";
 
-import { RegisterUserComponent } from './register-user/register-user.component';
-import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './sign-up/signup.component';
+import { SigninComponent } from './sign-in/signin.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [LoginComponent, RegisterUserComponent],
-  exports: [LoginComponent, RegisterUserComponent],
-  imports: []
+  declarations: [SigninComponent, SignupComponent],
+  exports: [SigninComponent, SignupComponent],
+  imports: [ReactiveFormsModule]
 })
 export class AuthenticationModule {
 
