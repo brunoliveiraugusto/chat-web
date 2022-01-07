@@ -1,5 +1,5 @@
-import { SignupComponent } from './components/authentication/sign-up/signup.component';
-import { SigninComponent } from './components/authentication/sign-in/signin.component';
+import { SignupComponent } from './components/user/sign-up/signup.component';
+import { SigninComponent } from './components/user/sign-in/signin.component';
 import { AuthGuard } from './components/core/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,7 +8,7 @@ import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
-    path: 'register',
+    path: 'signup',
     component: SignupComponent
   },
   {
