@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { debounceTime } from 'rxjs/operators';
 import { User } from 'src/app/interfaces/user';
+import { ResponseBase } from 'src/app/shared/models/response-base';
 
 @Component({
   templateUrl: './signup.component.html',
@@ -13,7 +14,7 @@ import { User } from 'src/app/interfaces/user';
 export class SignupComponent implements OnInit, OnDestroy {
 
   signupForm: FormGroup;
-  userExists$: Observable<any>;
+  userExists$: Observable<ResponseBase<any>>;
   debounce: Subject<string> = new Subject<string>();
 
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) { }
@@ -34,13 +35,18 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   signup() {
-    const user = this.signupForm.getRawValue() as User;
-    this.userService.post('create', user)
-    .subscribe((_) => {
-      this.router.navigate(['']);
-    }, (err) => {
-      alert('Não foi possível cadastrar o usuário, tente novamente.');
-    });
+    if(this.signupForm.valid && !this.signupForm.pending) {
+      const user = this.signupForm.getRawValue() as User;
+      this.userService.post('create', user)
+      .subscribe((_) => {
+        this.router.navigate(['']);
+      }, (err) => {
+        alert('Não foi possível cadastrar o usuário, tente novamente.');
+      });
+    }
+    else {
+      alert("Verifique o preenchimento dos campos obrigatórios.");
+    }
   }
 
   navigateTo(route: string): void {

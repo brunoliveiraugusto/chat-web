@@ -2,42 +2,46 @@
   <div class="text-center">
     <h4>Cadastre-se <i class="bi bi-chat-dots"></i></h4>
   </div>
-  <form [formGroup]="signupForm" class="form mt-3" (submit)="signup()">
+  <form #form="ngForm" [formGroup]="signupForm" class="form mt-3" (submit)="signup()">
     <div class="form-group mb-3">
       <input type="text" formControlName="username" class="form-control" placeholder="Usuário de acesso" (keyup)="debounce.next($event.target.value)">
       <validation-message
-        *ngIf="signupForm.get('username').errors?.required"
-        text="O preenchimento do campo Usuário de acesso é obrigatório">
+        *ngIf="signupForm.get('username').errors?.required && (form.submitted || signupForm.get('username').touched)"
+        text="O preenchimento do campo Usuário de acesso é obrigatório.">
+      </validation-message>
+      <validation-message
+        *ngIf="(userExists$ | async).data"
+        text="Este usuário de acesso já está em uso. Tente outro.">
       </validation-message>
     </div>
     <div class="form-group mb-3">
       <input type="text" formControlName="fullName" class="form-control" placeholder="Nome completo">
       <validation-message
-        *ngIf="signupForm.get('fullName').errors?.required"
-        text="O preenchimento do campo Nome completo de acesso é obrigatório">
+        *ngIf="signupForm.get('fullName').errors?.required && (form.submitted || signupForm.get('fullName').touched)"
+        text="O preenchimento do campo Nome completo é obrigatório.">
       </validation-message>
     </div>
     <div class="form-group mb-3">
       <input type="text" formControlName="email" class="form-control" placeholder="E-mail">
       <validation-message
-        *ngIf="signupForm.get('email').errors?.required"
-        text="O preenchimento do campo E-mail é obrigatório">
+        *ngIf="signupForm.get('email').errors?.required && (form.submitted || signupForm.get('email').touched)"
+        text="O preenchimento do campo E-mail é obrigatório.">
       </validation-message>
       <validation-message
-        *ngIf="signupForm.get('email').errors?.email"
-        text="O E-mail inserido é inválido">
+        *ngIf="signupForm.get('email').errors?.email && (form.submitted || signupForm.get('email').touched)"
+        text="O E-mail inserido é inválido.">
       </validation-message>
     </div>
     <div class="form-group mb-3">
       <input type="date" formControlName="dateBirth" class="form-control" placeholder="Data de nascimento">
       <validation-message
-        *ngIf="signupForm.get('dateBirth').errors?.required"
-        text="O preenchimento do campo Data de nascimento é obrigatório">
+        *ngIf="signupForm.get('dateBirth').errors?.required && (form.submitted || signupForm.get('dateBirth').touched)"
+        text="O preenchimento do campo Data de nascimento é obrigatório.">
       </validation-message>
     </div>
 
-    <button [disabled]="signupForm.invalid || signupForm.pending" class="btn btn-primary btn-block w-100">Cadastrar</button>
-    <p class="text-muted mt-1">Já possui um usuário? <u (click)="navigateTo('')">Clique aqui.</u></p>
+    <button class="btn btn-primary btn-block w-100">Cadastrar</button>
+    <small class="text-muted mt-1">Já possui um usuário? <u (click)="navigateTo('')">Clique aqui.</u></small>
   </form>
 
 </div>
