@@ -1,1 +1,29 @@
-<p>login works!</p>
+<div class="m-5">
+  <div class="text-center">
+    <h4>Entre no Chat <i class="bi bi-chat-dots"></i></h4>
+  </div>
+  <div class="form-group mb-3">
+    <input type="text" formControlName="email" class="form-control" placeholder="Usuário de acesso ou E-mail">
+    <validation-message
+      *ngIf="signinForm.get('email').errors?.required && (form.submitted || signinForm.get('email').touched)"
+      text="O preenchimento do campo E-mail é obrigatório.">
+    </validation-message>
+    <validation-message
+      *ngIf="signinForm.get('email').errors?.email && (form.submitted || signinForm.get('email').touched)"
+      text="O E-mail inserido é inválido.">
+    </validation-message>
+  </div>
+  <form #form="ngForm" [formGroup]="signinForm" class="form mt-3" (submit)="login()">
+    <div class="form-group mb-3">
+      <input type="text" formControlName="password" class="form-control" placeholder="Senha">
+      <validation-message
+        *ngIf="signinForm.get('password').errors?.required && (form.submitted || signinForm.get('password').touched)"
+        text="O preenchimento do campo Senha é obrigatório.">
+      </validation-message>
+    </div>
+
+    <button class="btn btn-primary btn-block w-100">Entrar</button>
+    <small class="text-muted mt-1">Não possui um usuário? <u (click)="navigateTo('signup')">Clique aqui.</u></small>
+  </form>
+
+</div>
