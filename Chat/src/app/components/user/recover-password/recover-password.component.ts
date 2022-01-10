@@ -19,9 +19,10 @@ export class RecoverPasswordComponent implements OnInit {
   recoverPasswordFormGroup: FormGroup;
   debounce: Subject<string> = new Subject<string>();
   userExists$: Observable<ResponseBase<any>>;
+  token: string;
 
   constructor(activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, private userService: UserService) {
-    this.activateUser.token = activatedRoute.snapshot.paramMap.get('token');
+    this.token = activatedRoute.snapshot.paramMap.get('token');
   }
 
   ngOnInit() {
@@ -34,15 +35,19 @@ export class RecoverPasswordComponent implements OnInit {
     this.checkExistingUser();
   }
 
-  register(): void {
+  activate(): void {
     if(!this.recoverPasswordFormGroup.valid && this.recoverPasswordFormGroup.pending) {
-      return alert("Preencha todos os campos antes de prosseguir.");
+      return alert('Preencha todos os campos antes de prosseguir.');
     }
 
     const user = this.recoverPasswordFormGroup.getRawValue();
     this.activateUser.username = user.username;
     this.activateUser.password = user.password;
     this.activateUser.passwordConfirmation = user.passwordConfirmation;
+    this.activateUser.token = this.token;
+
+    this.userService.post('activate-user', this.activateUser)
+    .subscribe(res => this.router.navigate(['']), err => alert('Não foi possível cadastrar a senha para o usuário informado, tente novamente.'));
   }
 
   navigateTo(route: string) {
