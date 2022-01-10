@@ -35,18 +35,17 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   signup() {
-    if(this.signupForm.valid && !this.signupForm.pending) {
-      const user = this.signupForm.getRawValue() as User;
-      this.userService.post('create', user)
-      .subscribe((_) => {
-        this.router.navigate(['']);
-      }, (err) => {
-        alert('Não foi possível cadastrar o usuário, tente novamente.');
-      });
+    if(!this.signupForm.valid && this.signupForm.pending) {
+      return alert("Preencha todos os campos antes de prosseguir.");
     }
-    else {
-      alert("Verifique o preenchimento dos campos obrigatórios.");
-    }
+
+    const user = this.signupForm.getRawValue() as User;
+    this.userService.post('create', user)
+    .subscribe((_) => {
+      this.router.navigate(['']);
+    }, (err) => {
+      alert('Não foi possível cadastrar o usuário, tente novamente.');
+    });
   }
 
   navigateTo(route: string): void {

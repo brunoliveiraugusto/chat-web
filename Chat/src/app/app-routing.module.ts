@@ -1,3 +1,4 @@
+import { RecoverPasswordComponent } from './components/user/recover-password/recover-password.component';
 import { SignupComponent } from './components/user/sign-up/signup.component';
 import { SigninComponent } from './components/user/sign-in/signin.component';
 import { AuthGuard } from './components/core/auth.guard';
@@ -15,6 +16,10 @@ const routes: Routes = [
     path: 'messages',
     component: ChatComponent,
     // canActivate: [AuthGuard]
+  },
+  {
+    path: 'password/:token',
+    component: RecoverPasswordComponent
   },
   {
     path: '**',
