@@ -1,21 +1,25 @@
-import { RecoverPasswordComponent } from './components/user/recover-password/recover-password.component';
-import { SignupComponent } from './components/user/sign-up/signup.component';
-import { SigninComponent } from './components/user/sign-in/signin.component';
-import { AuthGuard } from './components/core/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from './components/core/guards/auth.guard';
 import { ChatComponent } from './components/chat/chat.component';
+import { SigninComponent } from './components/user/sign-in/signin.component';
+import { SignupComponent } from './components/user/sign-up/signup.component';
+import { RecoverPasswordComponent } from './components/user/recover-password/recover-password.component';
 
 const routes: Routes = [
   {
-    path: 'signup',
-    component: SignupComponent
-  },
-  {
     path: 'messages',
     component: ChatComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'signin',
+    component: SigninComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
   },
   {
     path: 'password/:token',
@@ -23,7 +27,13 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: SigninComponent,
+    redirectTo: 'messages',
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    redirectTo: 'signin',
     pathMatch: 'full'
   }
 ];

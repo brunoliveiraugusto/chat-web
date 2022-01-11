@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { UserAuthentication } from './../../../interfaces/user-authentication';
-import { AuthService } from './../../core/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   templateUrl: './signin.component.html',

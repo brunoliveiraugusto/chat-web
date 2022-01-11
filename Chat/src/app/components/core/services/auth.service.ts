@@ -4,14 +4,14 @@ import { BaseHttpService } from 'src/app/services/base-http.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { tap } from 'rxjs/operators';
 
-import { TokenService } from './services/token.service';
+import { UserService } from './../../user/services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends BaseHttpService<any> {
 
-  constructor(http: HttpClient, private tokenService: TokenService) {
+  constructor(http: HttpClient, private userService: UserService) {
     super(http, 'auth');
   }
 
@@ -19,7 +19,7 @@ export class AuthService extends BaseHttpService<any> {
     return this._http.post<any>(`${this.baseUrl}/${this.resource}/${action}`, body, { observe: 'response'} )
       .pipe(tap(res => {
         const token = res.headers.get('x-access-token');
-        this.tokenService.setToken(token);
+        this.userService.setToken(token);
       }));
   }
 }
