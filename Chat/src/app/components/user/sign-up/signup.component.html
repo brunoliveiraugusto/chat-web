@@ -1,10 +1,11 @@
-<div class="m-5">
+<div class="m-3">
   <div class="text-center">
-    <h4>Cadastre-se <i class="bi bi-chat-dots"></i></h4>
+    <h5>Cadastre-se <i class="bi bi-chat-dots"></i></h5>
   </div>
   <form #form="ngForm" [formGroup]="signupForm" class="form mt-3" (submit)="signup()">
-    <div class="form-group mb-3">
-      <input type="text" formControlName="username" class="form-control" placeholder="Usuário de acesso" (keyup)="debounce.next($event.target.value)">
+    <div class="input-field">
+      <input id="username" type="text" class="validate" formControlName="username" (keyup)="debounce.next($event.target.value)">
+      <label for="username">Usuário de Acesso</label>
       <validation-message
         *ngIf="signupForm.get('username').errors?.required && (form.submitted || signupForm.get('username').touched)"
         text="O preenchimento do campo Usuário de acesso é obrigatório.">
@@ -14,15 +15,17 @@
         text="Este usuário de acesso já está em uso. Tente outro.">
       </validation-message>
     </div>
-    <div class="form-group mb-3">
-      <input type="text" formControlName="fullName" class="form-control" placeholder="Nome completo">
+    <div class="input-field">
+      <input id="fullName" type="text" class="validate" formControlName="fullName">
+      <label for="fullName">Nome Completo</label>
       <validation-message
         *ngIf="signupForm.get('fullName').errors?.required && (form.submitted || signupForm.get('fullName').touched)"
         text="O preenchimento do campo Nome completo é obrigatório.">
       </validation-message>
     </div>
-    <div class="form-group mb-3">
-      <input type="text" formControlName="email" class="form-control" placeholder="E-mail">
+    <div class="input-field">
+      <input id="email" type="email" class="validate" formControlName="email">
+      <label for="email">E-mail</label>
       <validation-message
         *ngIf="signupForm.get('email').errors?.required && (form.submitted || signupForm.get('email').touched)"
         text="O preenchimento do campo E-mail é obrigatório.">
@@ -32,16 +35,17 @@
         text="O E-mail inserido é inválido.">
       </validation-message>
     </div>
-    <div class="form-group mb-3">
-      <input type="date" formControlName="dateBirth" class="form-control" placeholder="Data de nascimento">
+    <div class="input-field">
+      <input id="dateBirth" type="date" class="validate" formControlName="dateBirth">
+      <label for="dateBirth">Data de Nascimento</label>
       <validation-message
         *ngIf="signupForm.get('dateBirth').errors?.required && (form.submitted || signupForm.get('dateBirth').touched)"
         text="O preenchimento do campo Data de nascimento é obrigatório.">
       </validation-message>
     </div>
 
-    <button class="btn btn-primary btn-block w-100">Cadastrar</button>
-    <small class="text-muted mt-1">Já possui um usuário? <u (click)="navigateTo('')">Clique aqui.</u></small>
+    <button class="waves-effect waves-light btn-small w-100 mb-0-2">Cadastrar</button>
+    <small class="text-muted">Já possui um usuário? <u (click)="navigateTo('signin')">Clique aqui.</u></small>
   </form>
 
 </div>

@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Margin */
+.m-3 {
+  margin: 3rem !important;
+}
+
+.m-5 {
+  margin: 5rem !important;
+}
+
+.mb-0-2 {
+  margin-bottom: 0.2rem !important;
+}
+
+/* Display */
+.d-flex {
+  display: flex !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.align-items-start {
+  align-items: flex-start !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-center {
+  text-align: center;
+}

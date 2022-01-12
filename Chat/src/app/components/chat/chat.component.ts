@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs/internal/Subject';
 import { debounceTime } from 'rxjs/operators';
 
@@ -14,15 +15,18 @@ export class ChatComponent implements OnInit {
 
   message: Message;
   debounce: Subject<string> = new Subject<string>();
+  searchGroup: FormGroup;
 
-  constructor(private signalRService: SignalrService) {
+  constructor(private signalRService: SignalrService, private formBuilder: FormBuilder) {
     this.signalRService.createConnection();
     this.registerOnServerEvents();
     this.signalRService.starConnection();
   }
 
   ngOnInit(): void {
-
+    this.searchGroup = this.formBuilder.group({
+      'search': ['', []]
+    });
   }
 
   private registerOnServerEvents() {

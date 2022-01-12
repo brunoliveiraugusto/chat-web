@@ -1,25 +1,27 @@
-<div class="m-5">
+<div class="m-3">
   <div class="text-center">
-    <h4>Entre no Chat <i class="bi bi-chat-dots"></i></h4>
+    <h5>Entre no Chat <i class="bi bi-chat-dots"></i></h5>
   </div>
-  <form #form="ngForm" [formGroup]="signinForm" class="form mt-3" (submit)="authenticate()">
-    <div class="form-group mb-3">
-      <input type="text" formControlName="username" class="form-control" placeholder="Usuário de acesso">
+  <form #form="ngForm" [formGroup]="signinForm" class="mt-3" (submit)="authenticate()">
+    <div class="input-field">
+      <input id="username" type="text" class="validate" formControlName="username">
+      <label for="username">Usuário de Acesso</label>
       <validation-message
         *ngIf="signinForm.get('username').errors?.required && (form.submitted || signinForm.get('username').touched)"
         text="O preenchimento do campo Usuário de acesso é obrigatório.">
       </validation-message>
     </div>
-    <div class="form-group mb-3">
-      <input type="password" formControlName="password" class="form-control" placeholder="Senha">
+    <div class="input-field">
+      <input id="password" type="password" class="validate" formControlName="password">
+      <label for="password">Senha</label>
       <validation-message
         *ngIf="signinForm.get('password').errors?.required && (form.submitted || signinForm.get('password').touched)"
         text="O preenchimento do campo Senha é obrigatório.">
       </validation-message>
     </div>
 
-    <button class="btn btn-primary btn-block w-100">Entrar</button>
-    <small class="text-muted mt-1">Não possui um usuário? <u (click)="navigateTo('signup')">Clique aqui.</u></small>
+    <button class="waves-effect waves-light btn-small d-block w-100 mb-0-2">Entrar</button>
+    <small class="text-muted">Não possui um usuário? <u (click)="navigateTo('signup')">Clique aqui.</u></small>
   </form>
 
 </div>
