@@ -47,7 +47,7 @@ export class RecoverPasswordComponent implements OnInit {
     this.activateUser.token = this.token;
 
     this.userService.post('activate-user', this.activateUser)
-    .subscribe(res => this.router.navigate(['']), err => alert('Não foi possível cadastrar a senha para o usuário informado, tente novamente.'));
+    .subscribe(res => this.router.navigate(['signin']), err => alert('Não foi possível cadastrar a senha para o usuário informado, tente novamente.'));
   }
 
   navigateTo(route: string) {
