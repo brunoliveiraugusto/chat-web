@@ -7,3 +7,7 @@
 .message-summary :focus {
   background-color: white;
 }
+
+.bg-header {
+  background-color: #1e2428;
+}
