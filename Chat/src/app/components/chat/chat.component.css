@@ -3,11 +3,3 @@
   top: 88.7%;
   left: 79.7%;
 }
-
-.message-summary :focus {
-  background-color: white;
-}
-
-.bg-header {
-  background-color: #1e2428;
-}

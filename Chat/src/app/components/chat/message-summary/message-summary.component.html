@@ -1,1 +1,18 @@
-<p>message-list works!</p>
+<div class="m-1">
+  <div class="mr-1">
+    <span class="material-icons fs-32 prefix">account_circle</span>
+  </div>
+  <div class="col s12">
+    <div class="d-flex align-items-start">
+      <div class="d-flex flex-column flex-grow-1">
+        <span class="text-bold">{{summary.from}}</span>
+      </div>
+      <div>
+        <small>{{summary.sendDate | date: 'dd/MM/yyyy'}}</small>
+      </div>
+    </div>
+    <div class="col s12">
+      <span class="ellipsis">{{summary.message}}</span>
+    </div>
+  </div>
+</div>

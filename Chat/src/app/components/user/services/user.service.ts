@@ -13,6 +13,7 @@ import { TokenService } from './../../core/services/token.service';
 export class UserService extends BaseHttpService<any> {
 
   private userSubject = new Subject<UserLogged>();
+  private username: string;
 
   constructor(http: HttpClient, private tokenService: TokenService) {
     super(http, 'user');
@@ -31,6 +32,11 @@ export class UserService extends BaseHttpService<any> {
   private decodeAndNotify() {
     const token = this.tokenService.getToken();
     const user = jtw_decode(token) as UserLogged;
+    this.username = user.username;
     this.userSubject.next(user);
+  }
+
+  getUsername(): string {
+    return this.username;
   }
 }

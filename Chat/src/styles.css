@@ -4,7 +4,7 @@ body {
   background-color: #131c21;
 }
 
-span, p, h5, small, input {
+span, p, h5, small, input, textarea {
   color: white;
 }
 
@@ -33,6 +33,10 @@ span, p, h5, small, input {
   margin-top: 0rem !important;
 }
 
+.mt-0-3 {
+  margin-top: 0.3rem !important;
+}
+
 .mt-1 {
   margin-top: 1rem !important;
 }
@@ -55,6 +59,10 @@ span, p, h5, small, input {
 
 .mb-1 {
   margin-bottom: 1rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
 }
 
 .mr-0 {
@@ -155,4 +163,8 @@ hr {
 
 .lh-1 {
   line-height: 1;
+}
+
+.bg-gray {
+  background-color: #1e2428;
 }

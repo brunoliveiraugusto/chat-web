@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { MessageSummary } from './../../../interfaces/message-summary';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'message-summary',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message-summary.component.css']
 })
 export class MessageSummaryComponent implements OnInit {
+
+  @Input() summary: MessageSummary;
 
   constructor() { }
 

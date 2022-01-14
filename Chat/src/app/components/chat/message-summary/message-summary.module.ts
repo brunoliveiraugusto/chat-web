@@ -1,3 +1,4 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from "@angular/core";
 
 import { MessageSummaryComponent } from './message-summary.component';
@@ -5,7 +6,7 @@ import { MessageSummaryComponent } from './message-summary.component';
 @NgModule({
   declarations: [MessageSummaryComponent],
   exports: [MessageSummaryComponent],
-  imports: []
+  imports: [BrowserModule]
 })
 export class MessageSummaryModule {
 

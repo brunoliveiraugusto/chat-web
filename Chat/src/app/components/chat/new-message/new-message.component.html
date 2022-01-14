@@ -1,0 +1,25 @@
+<div class="bg-gray">
+  <div class="row mb-0 mr-1 ml-1">
+    <form [formGroup]="searchGroup">
+      <div class="row mb-0">
+        <div class="input-field col s12 mt-1">
+          <textarea id="icon_prefix2" class="materialize-textarea" (keyup)="debounce.next($event.target.value)"></textarea>
+          <label for="icon_prefix2">Busque um usuário...</label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+<div class="m-1" *ngIf="(user$ | async)?.data as user">
+  <div class="col s12">
+    <div class="d-flex align-items-start">
+      <div class="mr-1 d-flex flex-column flex-grow-0">
+        <span class="material-icons fs-32 prefix">account_circle</span>
+      </div>
+      <div class="mt-0-3">
+        <span class="text-bold">{{user?.fullname}}</span>
+      </div>
+  </div>
+</div>
+

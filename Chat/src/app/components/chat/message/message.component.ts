@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'message',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageComponent implements OnInit {
 
-  constructor() { }
+  username: string;
+
+  constructor(activatedRoute: ActivatedRoute) {
+    this.username = activatedRoute.snapshot.paramMap.get('user');
+  }
 
   ngOnInit() {
   }
