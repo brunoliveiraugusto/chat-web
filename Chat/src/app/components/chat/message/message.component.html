@@ -1,8 +1,24 @@
-<div class="d-flex align-items-start bg-gray">
+<div class="d-flex align-items-start bg-gray p-1">
+  <div (click)="navigateTo()">
+    <i class="material-icons c-white fs-32">chevron_left</i>
+  </div>
   <div class="mr-1">
     <span class="material-icons fs-32 prefix">account_circle</span>
   </div>
   <div class="mt-0-3">
-    <span>{{username}}</span>
+    <span class="">{{fullname}}</span>
   </div>
+</div>
+<div class="input-message">
+  <form [formGroup]="messageGroup">
+    <div class="d-flex align-items-start ml-1 mr-1">
+      <div class="input-field d-flex flex-column flex-grow-1 mr-1">
+        <textarea id="icon_prefix2" class="materialize-textarea" formControlName="message"></textarea>
+        <label for="icon_prefix2">Mensagem</label>
+      </div>
+      <div class="mt-1-5" (click)="sendMessage()">
+        <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">send</i></a>
+      </div>
+    </div>
+  </form>
 </div>
