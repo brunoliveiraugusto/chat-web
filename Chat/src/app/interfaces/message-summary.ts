@@ -1,6 +1,7 @@
 export interface MessageSummary {
-  src: string;
   from: string;
-  message: string;
+  fullname: string;
+  to: string;
+  text: string;
   sendDate: Date;
 }
