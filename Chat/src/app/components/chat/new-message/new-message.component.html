@@ -11,7 +11,7 @@
   </div>
 </div>
 <hr>
-<div class="m-1" *ngIf="(user$ | async)?.data as user">
+<div class="m-1" *ngIf="(user$ | async)?.data as user" (click)="newMessage(user)">
   <div class="col s12">
     <div class="d-flex align-items-start">
       <div class="mr-1 d-flex flex-column flex-grow-0">

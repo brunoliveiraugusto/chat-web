@@ -1,3 +1,4 @@
+import { TokenService } from './../core/services/token.service';
 import { UserService } from './../user/services/user.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -19,23 +20,9 @@ export class ChatComponent implements OnInit {
   message: Message;
   debounce: Subject<string> = new Subject<string>();
   searchGroup: FormGroup;
-  messagesSummary: Array<MessageSummary> =
-  [
-    {
-      from: 'Geovanna',
-      message: 'Vc deixou o dinheiro pra eu pagar as roupas?',
-      sendDate: new Date(),
-      src: ''
-    },
-    {
-      from: 'Izaque',
-      message: 'o mecânico colocou um filtro novo e trocou o óleo da moto?',
-      sendDate: new Date(),
-      src: ''
-    }
-  ]
+  messagesSummary: Array<MessageSummary> = new Array<MessageSummary>();
 
-  constructor(private signalRService: SignalrService, private formBuilder: FormBuilder, private router: Router, private userService: UserService) {
+  constructor(private signalRService: SignalrService, private formBuilder: FormBuilder, private router: Router, private userService: UserService, private tokenService: TokenService) {
     this.signalRService.createConnection();
     this.registerOnServerEvents();
     this.signalRService.starConnection();
@@ -48,10 +35,8 @@ export class ChatComponent implements OnInit {
   }
 
   private registerOnServerEvents() {
-    this.signalRService.hubConnection.on("ReceiveMessage", (data: Message) => {
-      //Adiciono a mensagem no array de resumo de mensagens
-      //Se já houver mensagem do remetente, apenos atualizo a última mensagem e a data de envio
-      console.log(data);
+    this.signalRService.hubConnection.on(this.userService.getUsername(), (data: MessageSummary) => {
+      this.addMessage(data);
     });
   }
 
@@ -63,11 +48,27 @@ export class ChatComponent implements OnInit {
       });
   }
 
-  openMessage() {
-    this.router.navigate(['message', '']);
+  openMessage(messageSummary: MessageSummary) {
+    this.router.navigate(['message', messageSummary.from, messageSummary.fullname]);
   }
 
   newMessage() {
     this.router.navigate(['new-message']);
+  }
+
+  logout() {
+    this.tokenService.removeToken();
+    this.router.navigate(['signin']);
+  }
+
+  addMessage(data: MessageSummary) {
+    let index = this.messagesSummary.findIndex(message => message.from == data.from);
+    if(index > -1) {
+      this.messagesSummary[index].text = data.text;
+      this.messagesSummary[index].sendDate = data.sendDate;
+    }
+    else {
+      this.messagesSummary.push(data);
+    }
   }
 }

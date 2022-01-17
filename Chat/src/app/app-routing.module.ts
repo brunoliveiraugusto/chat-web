@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from './components/core/guards/auth.guard';
+import { AuthGuard } from './components/core/auth/auth.guard';
 import { ChatComponent } from './components/chat/chat.component';
 import { SigninComponent } from './components/user/sign-in/signin.component';
 import { SignupComponent } from './components/user/sign-up/signup.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'message/:user',
+    path: 'message/:username/:fullname',
     component: MessageComponent,
     canActivate: [AuthGuard]
   },

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { ResponseBase } from 'src/app/shared/models/response-base';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-message',
@@ -17,7 +18,7 @@ export class NewMessageComponent implements OnInit {
   debounce: Subject<string> = new Subject<string>();
   user$: Observable<ResponseBase<SearchedUser>>;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.searchGroup = this.formBuilder.group({
@@ -33,5 +34,9 @@ export class NewMessageComponent implements OnInit {
       .subscribe(value => {
         this.user$ = this.userService.get(`search-user/${value}`);
       });
+  }
+
+  newMessage(user: SearchedUser) {
+    this.router.navigate(['message', user.username, user.fullname]);
   }
 }

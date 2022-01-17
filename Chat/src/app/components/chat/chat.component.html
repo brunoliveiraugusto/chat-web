@@ -3,8 +3,8 @@
     <div class="d-flex align-items-start fs-16">
       <div class="d-flex flex-column flex-grow-1">
       </div>
-      <div class="mt-1">
-        <span class="material-icons fs-32 prefix">menu</span>
+      <div class="mt-1" (click)="logout()">
+        <i class="bi bi-box-arrow-left c-white fs-24"></i>
       </div>
     </div>
     <form [formGroup]="searchGroup">
@@ -18,7 +18,7 @@
   </div>
 </div>
 <hr>
-<div class="mb-2" *ngFor="let messageSummary of messagesSummary" (click)="openMessage()">
+<div class="mb-2" *ngFor="let messageSummary of messagesSummary; let i = index" (click)="openMessage(messagesSummary[i])">
   <message-summary [summary]="messageSummary"></message-summary>
 </div>
 <div class="position-btn-floating">
