@@ -1,3 +1,4 @@
+import { MessageService } from './message/services/message.service';
 import { TokenService } from './../core/services/token.service';
 import { UserService } from './../user/services/user.service';
 import { Router } from '@angular/router';
@@ -23,7 +24,13 @@ export class ChatComponent implements OnInit {
   messagesSummary: Array<MessageSummary> = new Array<MessageSummary>();
   fullname: string;
 
-  constructor(private signalRService: SignalrService, private formBuilder: FormBuilder, private router: Router, private userService: UserService, private tokenService: TokenService) {
+  constructor(
+      private signalRService: SignalrService,
+      private formBuilder: FormBuilder,
+      private router: Router,
+      private userService: UserService,
+      private tokenService: TokenService,
+      private messageService: MessageService) {
     this.signalRService.createConnection();
     this.registerOnServerEvents();
     this.signalRService.starConnection();
@@ -34,6 +41,8 @@ export class ChatComponent implements OnInit {
     this.searchGroup = this.formBuilder.group({
       'search': ['', []]
     });
+
+    this.getMessageSummary();
   }
 
   private registerOnServerEvents() {
@@ -51,7 +60,7 @@ export class ChatComponent implements OnInit {
   }
 
   openMessage(messageSummary: MessageSummary) {
-    this.router.navigate(['message', messageSummary.from, messageSummary.fullname]);
+    this.router.navigate(['message', messageSummary.sender, messageSummary.fullName]);
   }
 
   newMessage() {
@@ -64,13 +73,20 @@ export class ChatComponent implements OnInit {
   }
 
   addMessage(data: MessageSummary) {
-    let index = this.messagesSummary.findIndex(message => message.from == data.from);
+    let index = this.messagesSummary.findIndex(message => message.sender == data.sender);
     if(index > -1) {
-      this.messagesSummary[index].text = data.text;
+      this.messagesSummary[index].messageSent = data.messageSent;
       this.messagesSummary[index].sendDate = data.sendDate;
     }
     else {
       this.messagesSummary.push(data);
     }
+  }
+
+  getMessageSummary() {
+    const idUser = this.userService.getIdUser();
+    this.messageService.get(`summary/${idUser}`).subscribe(res => {
+      this.messagesSummary = res.data;
+    });
   }
 }

@@ -1,5 +1,5 @@
 export interface ActivateUser {
-  username: string;
+  userName: string;
   password: string;
   passwordConfirmation: string;
   token: string;

@@ -105,6 +105,10 @@ span, p, h5, small, input, textarea {
   padding-bottom: 1rem;
 }
 
+.pb-1-5 {
+  padding-bottom: 1.5rem;
+}
+
 /* Display */
 .d-flex {
   display: flex !important;
@@ -190,4 +194,8 @@ hr {
 
 .c-white {
   color: white;
+}
+
+.input-field > label {
+  left: 0 !important;
 }

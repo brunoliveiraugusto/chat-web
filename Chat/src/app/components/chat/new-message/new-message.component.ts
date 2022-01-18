@@ -37,6 +37,6 @@ export class NewMessageComponent implements OnInit {
   }
 
   newMessage(user: SearchedUser) {
-    this.router.navigate(['message', user.username, user.fullname]);
+    this.router.navigate(['message', user.userName, user.fullName]);
   }
 }

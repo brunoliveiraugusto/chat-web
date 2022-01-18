@@ -1,4 +1,4 @@
 export interface SearchedUser {
-  username: string;
-  fullname: string;
+  userName: string;
+  fullName: string;
 }

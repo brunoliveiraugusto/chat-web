@@ -13,8 +13,8 @@ import { MessageService } from './services/message.service';
 export class MessageComponent implements OnInit {
 
   messageGroup: FormGroup;
-  username: string;
-  fullname: string;
+  userName: string;
+  fullName: string;
 
   constructor(
       activatedRoute: ActivatedRoute,
@@ -23,8 +23,8 @@ export class MessageComponent implements OnInit {
       private messageService: MessageService,
       private userService: UserService
     ) {
-    this.username = activatedRoute.snapshot.paramMap.get('username');
-    this.fullname = activatedRoute.snapshot.paramMap.get('fullname');
+    this.userName = activatedRoute.snapshot.paramMap.get('username');
+    this.fullName = activatedRoute.snapshot.paramMap.get('fullname');
   }
 
   ngOnInit() {
@@ -47,10 +47,10 @@ export class MessageComponent implements OnInit {
     this.messageGroup.reset();
 
     let message: Message = {
-      from: this.userService.getUsername(),
+      sender: this.userService.getUsername(),
       sendDate: new Date(),
-      text: text,
-      to: this.username
+      messageSent: text,
+      recipient: this.userName
     }
 
     this.messageService.post('', message).subscribe(_ => {}, err => {

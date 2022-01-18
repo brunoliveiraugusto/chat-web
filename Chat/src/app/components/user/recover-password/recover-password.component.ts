@@ -15,7 +15,7 @@ import { ActivateUser } from './../../../interfaces/activate-user';
 })
 export class RecoverPasswordComponent implements OnInit {
 
-  activateUser: ActivateUser = { username: '', password: '', passwordConfirmation: '', token: '' };
+  activateUser: ActivateUser = { userName: '', password: '', passwordConfirmation: '', token: '' };
   recoverPasswordFormGroup: FormGroup;
   debounce: Subject<string> = new Subject<string>();
   userExists$: Observable<ResponseBase<any>>;
@@ -41,7 +41,7 @@ export class RecoverPasswordComponent implements OnInit {
     }
 
     const user = this.recoverPasswordFormGroup.getRawValue();
-    this.activateUser.username = user.username;
+    this.activateUser.userName = user.username;
     this.activateUser.password = user.password;
     this.activateUser.passwordConfirmation = user.passwordConfirmation;
     this.activateUser.token = this.token;

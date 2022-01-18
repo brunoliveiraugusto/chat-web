@@ -2,7 +2,7 @@
   <div class="row mb-0 mr-1 ml-1">
     <form [formGroup]="searchGroup">
       <div class="row mb-0">
-        <div class="input-field col s12 mt-1">
+        <div class="input-field col s12 mt-1-5 p-0">
           <textarea id="icon_prefix2" class="materialize-textarea" (keyup)="debounce.next($event.target.value)"></textarea>
           <label for="icon_prefix2">Busque um usuário...</label>
         </div>
@@ -18,7 +18,7 @@
         <span class="material-icons fs-32 prefix">account_circle</span>
       </div>
       <div class="mt-0-3">
-        <span class="text-bold">{{user?.fullname}}</span>
+        <span class="text-bold">{{user?.fullName}}</span>
       </div>
   </div>
 </div>
