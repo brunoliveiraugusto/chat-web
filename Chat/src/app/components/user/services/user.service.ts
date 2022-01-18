@@ -14,6 +14,7 @@ export class UserService extends BaseHttpService<any> {
 
   private userSubject = new Subject<UserLogged>();
   private username: string;
+  private fullname: string;
 
   constructor(http: HttpClient, private tokenService: TokenService) {
     super(http, 'user');
@@ -33,10 +34,15 @@ export class UserService extends BaseHttpService<any> {
     const token = this.tokenService.getToken();
     const user = jtw_decode(token) as UserLogged;
     this.username = user.username;
+    this.fullname = user.fullName;
     this.userSubject.next(user);
   }
 
   getUsername(): string {
     return this.username;
+  }
+
+  getFullname(): string {
+    return this.fullname;
   }
 }
