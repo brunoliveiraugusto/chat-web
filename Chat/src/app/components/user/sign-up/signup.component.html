@@ -11,7 +11,7 @@
         text="O preenchimento do campo Usuário de acesso é obrigatório.">
       </validation-message>
       <validation-message
-        *ngIf="(userExists$ | async).data"
+        *ngIf="(userExists$ | async)?.data"
         text="Este usuário de acesso já está em uso. Tente outro.">
       </validation-message>
     </div>
