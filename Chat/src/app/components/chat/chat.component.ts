@@ -21,6 +21,7 @@ export class ChatComponent implements OnInit {
   debounce: Subject<string> = new Subject<string>();
   searchGroup: FormGroup;
   messagesSummary: Array<MessageSummary> = new Array<MessageSummary>();
+  fullname: string;
 
   constructor(private signalRService: SignalrService, private formBuilder: FormBuilder, private router: Router, private userService: UserService, private tokenService: TokenService) {
     this.signalRService.createConnection();
@@ -29,6 +30,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fullname = this.userService.getFullname().split(" ")[0];
     this.searchGroup = this.formBuilder.group({
       'search': ['', []]
     });

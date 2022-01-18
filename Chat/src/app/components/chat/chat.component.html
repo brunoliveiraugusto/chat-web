@@ -1,7 +1,8 @@
 <div class="bg-gray">
   <div class="row mb-0 mr-1 ml-1">
-    <div class="d-flex align-items-start fs-16">
-      <div class="d-flex flex-column flex-grow-1">
+    <div class="d-flex align-items-start fs-16 mb-1">
+      <div class="d-flex flex-column flex-grow-1 mt-1-5">
+        <span class="">Bem vindo, {{fullname}}.</span>
       </div>
       <div class="mt-1" (click)="logout()">
         <i class="bi bi-box-arrow-left c-white fs-24"></i>
@@ -9,7 +10,7 @@
     </div>
     <form [formGroup]="searchGroup">
       <div class="row mb-0">
-        <div class="input-field col s12 mt-0">
+        <div class="input-field col s12 mt-0 p-0">
           <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
           <label for="icon_prefix2">Pesquisar...</label>
         </div>

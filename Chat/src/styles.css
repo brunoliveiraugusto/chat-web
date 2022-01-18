@@ -90,6 +90,10 @@ span, p, h5, small, input, textarea {
 }
 
 /* Padding */
+.p-0 {
+  padding: 0rem !important;
+}
+
 .p-1 {
   padding: 1rem;
 }
