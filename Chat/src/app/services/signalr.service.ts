@@ -17,7 +17,7 @@ export class SignalrService {
 
   createConnection() {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl('http://localhost:31146/chat', {
+      .withUrl('http://192.168.0.12:3000/chat', {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
       })
