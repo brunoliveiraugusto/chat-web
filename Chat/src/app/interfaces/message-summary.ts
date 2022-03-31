@@ -4,4 +4,5 @@ export interface MessageSummary {
   recipient: string;
   messageSent: string;
   sendDate: Date;
+  isRecipient?: boolean;
 }

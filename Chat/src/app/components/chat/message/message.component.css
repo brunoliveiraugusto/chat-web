@@ -1,5 +1,22 @@
-.input-message {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
+textarea {
+  max-height: 10rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 0.6rem;
+}
+
+.message-sender {
+  background-color: #26a69a;
+}
+
+.message-recipient {
+  background-color: #3a4044;
+}
+
+.border-radius-message {
+  border-radius: 1rem;
+}
+
+.ml-25 {
+  margin-left: 25% !important;
 }

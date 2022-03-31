@@ -1,4 +1,4 @@
-<div class="d-flex align-items-start bg-gray p-1">
+<div class="d-flex align-items-start bg-gray p-1 p-fixed top-0 w-100">
   <div (click)="navigateTo()">
     <i class="material-icons c-white fs-32">chevron_left</i>
   </div>
@@ -9,16 +9,34 @@
     <span class="">{{fullName}}</span>
   </div>
 </div>
-<div class="input-message">
-  <form [formGroup]="messageGroup">
-    <div class="d-flex align-items-start ml-1 mr-1">
-      <div class="input-field d-flex flex-column flex-grow-1 mr-1">
-        <textarea id="icon_prefix2" class="materialize-textarea" formControlName="message"></textarea>
-        <label for="icon_prefix2">Mensagem</label>
+<div id="chat-container" class="p-1 mt-4 mb-5">
+  <ng-container *ngFor="let message of paginationMessages?.messages">
+    <div class="d-flex align-items-end w-75 message-recipient border-radius-message p-0-5 mb-0-3" *ngIf="message.isRecipient">
+      <div class="flex-column flex-grow-1">
+        <span>{{message.messageSent}}</span>
       </div>
-      <div class="mt-1-5" (click)="sendMessage()">
-        <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">send</i></a>
+      <div class="ml-1">
+        <small>{{message.sendDate | date: 'hh:mm'}}</small>
       </div>
     </div>
-  </form>
+
+    <div class="d-flex align-items-end w-75 message-sender border-radius-message p-0-5 mb-0-3 ml-25" *ngIf="!message.isRecipient">
+      <div class="flex-column flex-grow-1">
+        <span>{{message.messageSent}}</span>
+      </div>
+      <div class="ml-1">
+        <small>{{message.sendDate | date: 'hh:mm'}}</small>
+      </div>
+    </div>
+  </ng-container>
 </div>
+<form [formGroup]="messageGroup">
+  <div class="d-flex align-items-start bottom-0 p-fixed bg-gray w-100 pl-1 pr-1">
+    <div class="input-field d-flex flex-column flex-grow-1 mr-1">
+      <textarea id="icon_prefix2" class="materialize-textarea" formControlName="message" placeholder="Mensagem"></textarea>
+    </div>
+    <div class="mt-1-5" (click)="sendMessage()">
+      <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">send</i></a>
+    </div>
+  </div>
+</form>
